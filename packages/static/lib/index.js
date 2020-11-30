@@ -1,20 +1,19 @@
-// static.js
 const fs = require("fs");
 const path = require("path");
 
-module.exports = (dirPath = "./public") => {
+module.exports = (root) => {
   return async (ctx, next) => {
-    if (ctx.url.indexOf("/public") === 0) {
+    if (ctx.url.startsWith(root)) {
       // public开头 读取文件
       const url = path.resolve(__dirname, dirPath);
       const filepath = url + ctx.url.replace("/public", "");
+      // const filePath = path.join(root, ctx.url);
       try {
-        stats = fs.statSync(filepath);
+        stats = fs.statSync(filePath);
         if (stats.isDirectory()) {
-          const dir = fs.readdirSync(filepath);
+          const dir = fs.readdirSync(filePath);
           const ret = ['<div style="padding-left:20px">'];
           dir.forEach((filename) => {
-            console.log(filename);
             // 简单认为不带小数点的格式，就是文件夹，实际应该用statSync
             if (filename.indexOf(".") > -1) {
               ret.push(
@@ -32,7 +31,7 @@ module.exports = (dirPath = "./public") => {
         } else {
           console.log("文件");
 
-          const content = fs.readFileSync(filepath);
+          const content = fs.readFileSync(filePath);
           ctx.body = content;
         }
       } catch (err) {

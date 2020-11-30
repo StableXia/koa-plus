@@ -25,7 +25,6 @@ class Router {
         let item = stack[i];
 
         if (item.path === ctx.url && item.method === ctx.method) {
-          // 判断path和method
           route = item.middleware;
           break;
         }
