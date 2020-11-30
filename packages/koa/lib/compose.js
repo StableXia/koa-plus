@@ -1,22 +1,22 @@
 /**
  * 中间件组合函数
- * @param {Function[]} middleware
+ * @param {Function[]} middlewares
  */
-function compose(middleware) {
-  if (!Array.isArray(middleware)) {
-    throw new Error("middleware 必须是一个数组！");
+function compose(middlewares) {
+  if (!Array.isArray(middlewares)) {
+    throw new Error("middlewares 必须是一个数组！");
   }
 
-  for (const fn of middleware) {
+  for (const fn of middlewares) {
     if (typeof fn !== "function")
-      throw new Error("middleware 的元素必须是函数！");
+      throw new Error("middlewares 的元素必须是函数！");
   }
 
   return function (ctx) {
     return dispatch(0);
 
     function dispatch(i) {
-      const fn = middleware[i];
+      const fn = middlewares[i];
 
       if (!fn) {
         return Promise.resolve();

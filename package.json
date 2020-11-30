@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "example": "example",
-    "lib": "lib"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,9 +17,7 @@
     "url": "https://github.com/xiaotangdou/koa-plus/issues"
   },
   "homepage": "https://github.com/xiaotangdou/koa-plus#readme",
-  "dependencies": {
-    "koa": "^2.13.0",
-    "koa-router": "^10.0.0",
-    "koa-static": "^5.0.0"
+  "devDependencies": {
+    "lerna": "^3.22.1"
   }
 }
